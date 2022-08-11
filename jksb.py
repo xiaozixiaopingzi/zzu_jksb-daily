@@ -230,8 +230,8 @@ def sign_in(id, pwd):
         "myvs_15": "否",
 
         "myvs_13a": "41",  # 省份（自治区）：省份编码  对应身份证前两位  河南省=41
-        "myvs_13b": "4101",  # 地市：地级市编码 对应身份证前四位  郑州市=4101
-        "myvs_13c": "河南省.郑州市",  # 自己填写当前所在地即可
+        "myvs_13b": "4110",  # 地市：地级市编码 对应身份证前四位  郑州市=4101
+        "myvs_13c": "河南省.许昌.东城区",  # 自己填写当前所在地即可
         "myvs_24": "否",
         "myvs_26": "5",  # 疫苗接种情况：0是待选；1是1针剂；2是2针剂；3是尚未接种；4是有禁忌症，无法接种；5是三针3针剂
         # "myvs_14b": "",  # 该选项已弃用
@@ -321,26 +321,4 @@ def sign_in(id, pwd):
 
 
 
-# 发送邮件的函数
-def mail(mail_text, mail_to):
-    # set the mail context
-    msg = MIMEText(mail_text)
 
-    # set the mail info
-    msg['Subject'] = "每日健康打卡通知"  # 主题
-    msg['From'] = MAIL_USER
-    msg['To'] = mail_to
-
-    # send the mail
-    # 发送到QQ邮箱
-    send = smtplib.SMTP_SSL("smtp.qq.com", 465)
-    send.login(MAIL_USER, MAIL_PWD)
-    send.send_message(msg)
-    # quit QQ EMail
-    send.quit()
-
-
-if __name__ == '__main__':
-    msg = sign_in(id=id, pwd=pwd)
-    # print(msg)
-    mail(msg, MAIL_TO)
