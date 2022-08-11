@@ -4,9 +4,9 @@ name: ZZUjksb
 # on设置触发条件
 on:
     workflow_dispatch:
-    # 设定国际标准时间19点33--此处是北京时间凌晨3点33左右。国际标准时间，等于北京时间减去 8 个小时
+    # 国际标准时间，等于北京时间减去 8 个小时
     schedule:
-    - cron: '33 19 * * *'
+    - cron: '24 16,20 * * *'
 
 jobs:
   # build为job名称
@@ -41,8 +41,5 @@ jobs:
         env:
             id: ${{secrets.id}}
             pwd: ${{secrets.pwd}}
-            MAIL_USER: ${{secrets.MAIL_USER}}
-            MAIL_PWD: ${{secrets.MAIL_PWD}}
-            MAIL_TO: ${{secrets.MAIL_TO}}
         # 让job跑起来--让python文件运行
         run: python jksb.py
