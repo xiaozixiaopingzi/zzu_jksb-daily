@@ -109,9 +109,9 @@ def sign_in(id, pwd):
     text = r.text.encode(r.encoding).decode(r.apparent_encoding)  # 解决乱码问题
 
 
-    # 获取fun18参数
-    matchObj_fun18 = re.findall(r'name="fun18" value="(\d+)"', text)
-    fun18 = matchObj_fun18[0]
+    # 获取fun118参数
+    matchObj_fun118 = re.findall(r'name="fun118" value="(\d+)"', text)
+    fun118 = matchObj_fun118[0]
 
 
     tree = etree.HTML(text)
@@ -157,12 +157,12 @@ def sign_in(id, pwd):
     ptopid = matchObj.group(1)
     sid = matchObj.group(2)
 
-    fun18 = fun18
+    fun118 = fun118
     form = {
         "day6": "b",
         "did": "1",
         "door": "",
-        "fun18":fun18,
+        "fun118":fun118,
         "men6": "a",
         "ptopid": ptopid,
         "sid": sid
@@ -235,11 +235,12 @@ def sign_in(id, pwd):
         "men6": "a",
         "sheng6": "",
         "shi6": "",
-        "fun18": fun18,  # fun18 动态变化，用来检测脚本
+        "fun118": fun118,  # fun18 动态变化，用来检测脚本
         "fun3": "",
         # 注释掉经纬度
-        # "jingdu": "113.658333",  # 经度： 北校区经度,jingdu=113.658055
-        # "weidu": "34.782222",  # 纬度： 北校区纬度,&weidu=34.782807  东经113.658333北纬34.7822222
+        "jingdu": "113.858460",  # 经度： 北校区经度,jingdu=113.658055
+        "weidu": "34.041460",  # 纬度： 北校区纬度,&weidu=34.782807  
+        # 许：113.858460 34.041460
         "ptopid": ptopid,
         "sid": sid,
     }
