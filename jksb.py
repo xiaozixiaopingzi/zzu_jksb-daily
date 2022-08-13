@@ -12,8 +12,8 @@ import os, sys
 from lxml import etree  # 可以利用Xpath进行文本解析的库
 
 # 账号 密码等信息 Actions部署
-idd = os.environ.get('id')
-pwd = os.environ.get('pwd')
+idd = os.environ.get('ID')
+pwd = os.environ.get('PWD')
 
 
 # 本地运行就直接填上相应信息，所有信息需要被双引号""包裹
