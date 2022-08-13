@@ -12,12 +12,12 @@ import os, sys
 from lxml import etree  # 可以利用Xpath进行文本解析的库
 
 # 账号 密码等信息 Actions部署
-id = os.environ["id"]
-pwd = os.environ["pwd"]
+idd = os.environ.get('id')
+pwd = os.environ.get('pwd')
 
 
 # 本地运行就直接填上相应信息，所有信息需要被双引号""包裹
-# id = "学号"
+# idd = "学号"
 # pwd = "密码"
 # MAIL_USER = "QQ邮箱账户"
 # # 这里是授权码--不是账户密码
@@ -26,10 +26,10 @@ pwd = os.environ["pwd"]
 
 # 账号和密码需要被双引号""包裹 
 #   eg:
-#       id = "学号"
+#       idd = "学号"
 #       pwd = "密码"
 
-def sign_in(id, pwd):
+def sign_in(idd, pwd):
     curr_dir = os.path.dirname(os.path.abspath(__file__))
     r = ""
 
@@ -50,7 +50,7 @@ def sign_in(id, pwd):
         'Content-Type': 'application/x-www-form-urlencoded'
     }
     form = {
-        "uid": id,
+        "uid": idd,
         "upw": pwd,
         "smbtn": "进入健康状况上报平台",
         "hh28": "750"  # 按照当前浏览器窗口大小计算
@@ -85,7 +85,8 @@ def sign_in(id, pwd):
         sid = matchObj.group(2)
 
     except:
-        logging.warning("请检查账号" + id + "和密码" + pwd + "是否正确，或检查是否有验证码")
+        logging.warning("请检查账号" + idd + "和密码" + pwd + "是否正确，或检查是否有验证码")
+        print("请检查账号" + idd + "和密码" + pwd + "是否正确，或检查是否有验证码")
         exit()
     else:
         logging.info("账号密码正确")
