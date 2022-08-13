@@ -89,6 +89,7 @@ def sign_in(id, pwd):
         exit()
     else:
         logging.info("账号密码正确")
+        print("账号密码正确\n")
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36 Edg/100.0.1185.29',
         'referer': 'https://jksb.v.zzu.edu.cn/vls6sss/zzujksb.dll/login'
@@ -112,12 +113,14 @@ def sign_in(id, pwd):
     # 获取fun118参数
     matchObj_fun118 = re.findall(r'name="fun118" value="(\d+)"', text)
     fun118 = matchObj_fun118[0]
+    print(fun118 + "\n")
 
 
     tree = etree.HTML(text)
     nodes = tree.xpath('//*[@id="bak_0"]/div[5]/span')
     # 如果今日填报过就退出填报，直接返回msg
     if nodes[0].text == "今日您已经填报过了":
+        print("今日已填报过\n")
         return nodes[0].text
     r.close()
     del (r)
@@ -305,9 +308,11 @@ def sign_in(id, pwd):
     # 如果今日填报过就退出填报，直接返回msg
     if nodes[0].text == "今日您已经填报过了":
         logging.info(id + ":打卡成功\n")
+        print("打卡成功\n")
         return  nodes[0].text
     else:
         logging.info(id + ":打卡失败\n")
+        print("打卡失败\n")
         return "今日打卡失败"
 
     r.close()
