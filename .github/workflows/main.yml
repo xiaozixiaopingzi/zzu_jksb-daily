@@ -6,7 +6,7 @@ on:
     workflow_dispatch:
     # 国际标准时间，等于北京时间减去 8 个小时
     schedule:
-    - cron: '24 16,20 * * *'
+    - cron: '30 16,20 * * *'
 
 jobs:
   # build为job名称
